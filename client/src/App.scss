@@ -1,0 +1,374 @@
+@import '~@sweetalert2/theme-dark/dark.scss';
+
+$dark-blue: #081631;
+$grey: #58585a;
+$grey-dark: #525254;
+// Utilities
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.ml-05 {
+    margin-left: 0.5rem;
+}
+
+.ml-1 {
+    margin-left: 1rem;
+}
+
+.d-sm {
+    display: none;
+}
+
+// General
+
+.btn {
+    font-family: 'Nexa Bold';
+    line-height: 2rem;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    border: none;
+    padding: 0.25rem 6rem;
+    padding-top: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.bold {
+    font-family: 'Nexa Bold';
+}
+
+.light {
+    font-family: 'Nexa Light';
+}
+
+.bg-blue {
+    background: $dark-blue;
+}
+
+.bg-grey {
+    background: $grey;
+}
+
+.container {
+    width: 80%;
+    margin: 0rem auto;
+}
+
+.d-flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.d-flex {
+    display: flex;
+}
+// Home Page Header
+
+.header-container {
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 0px 0px rgba(0, 0, 0, 0.12) !important;
+    background: #2b2f30;
+
+    * {
+        color: #fff;
+    }
+
+    @media screen and (max-width: 600px) {
+        height: 60px;
+        padding: 0px 10px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}
+
+.logo-container {
+    height: 80%;
+    margin-left: 5rem;
+    @media screen and (max-width: 600px) {
+        margin: 0;
+    }
+    @media screen and (max-width: 576px) {
+        height: 70%;
+    }
+    @media screen and (max-width: 360px) {
+        height: 50%;
+    }
+}
+
+.options-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 5rem 0 0;
+    @media screen and (max-width: 600px) {
+        width: 80%;
+        margin: 0px;
+    }
+}
+
+.option-link {
+    padding: 0.7rem 2.5rem;
+    text-decoration: none;
+    font-size: 1.225rem;
+    font-weight: 900;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    border-radius: 3px;
+    margin-right: 2rem;
+    &:hover {
+        background-color: darken($color: #2b2f30, $amount: 1.2);
+    }
+    @media screen and (max-width: 600px) {
+        font-size: 1rem;
+        padding: 10px 12px;
+        margin-right: 0rem;
+    }
+}
+
+.option-link-blue {
+    background: $dark-blue;
+    &:hover {
+        background-color: darken($color: $dark-blue, $amount: 1.2);
+    }
+}
+
+// HomePage || home page
+
+.homepage {
+    min-height: 100vh;
+    * {
+        color: #fff;
+    }
+}
+
+.home-h1 {
+    font-family: 'Nexa Bold';
+    font-size: 3.35rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.home-lead {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.start-section {
+    background: #4f5257;
+}
+
+// Auth Login/SignUp
+.auth-navbar-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 5rem;
+    width: 100%;
+}
+
+.auth-navbar {
+    width: 95%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-navbar-logo-container {
+    height: 60px;
+    width: 200px;
+    color: white;
+    margin-right: 1rem;
+}
+
+.auth-navbar-logo {
+    height: 100%;
+    width: 100%;
+}
+
+.auth-navbar-statement-link {
+    color: white;
+    font-family: 'Nexa Bold';
+    font-size: bold;
+}
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 89vh;
+}
+
+.auth-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 550px;
+    padding: 2.5rem 5rem;
+    background: $grey;
+}
+
+.auth-box > * {
+    width: 80%;
+}
+
+.auth-heading {
+    font-size: 2rem;
+    font-family: 'Nexa Bold';
+    text-align: left;
+    color: #fff;
+}
+
+.auth-form > * {
+    width: 100%;
+}
+
+.auth-input {
+    background: $grey-dark;
+    color: white;
+    padding: 1rem 0.5rem;
+    border: none;
+
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    &::placeholder {
+        font-family: 'Nexa Light';
+        color: white;
+    }
+}
+
+.btn-auth {
+    background: $dark-blue;
+    color: #fff;
+
+    &:active {
+        background: darken($dark-blue, 1.2);
+    }
+}
+
+.btn-google {
+    color: #fff;
+    font-family: 'Nexa Light';
+    background-color: $grey;
+    border: 3px solid $dark-blue;
+    padding: 0.25rem 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.google-logo {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.facebook-logo {
+    fill: #4267b2;
+    background: white;
+    border-radius: 4px;
+    padding: 0px;
+}
+
+.btn-google-text {
+    margin-top: 0.4rem;
+}
+
+.auth-or {
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    line-height: 0.1em;
+    margin: 1rem 0 0rem;
+}
+
+.auth-or-span {
+    background-color: $grey;
+    padding: 0 10px;
+}
+
+.people-image {
+    width: 800px;
+}
+
+@media (max-width: 992px) {
+    .d-none-md {
+        display: none;
+    }
+
+    .people-image {
+        width: 100%;
+    }
+}
+
+// Mobile 576px
+@media (max-width: 576px) {
+    .container {
+        width: 95%;
+        margin: 0rem auto;
+    }
+
+    .auth-box {
+        width: 90%;
+        padding: 2rem 1rem;
+    }
+
+    .auth-box > * {
+        width: 90%;
+    }
+
+    .header-container {
+        margin-bottom: 0px;
+    }
+
+    .home-h1 {
+        font-size: 2.35rem;
+        margin-top: 3rem;
+    }
+
+    .logo-and-auth {
+        justify-content: center;
+        align-items: center;
+    }
+}
