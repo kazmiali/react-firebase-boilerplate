@@ -11,6 +11,7 @@ import {
     signUpFailure,
     updateDPFailure,
     updateDPSuccess,
+    signOutStart,
 } from './user.actions';
 
 import {
@@ -70,10 +71,12 @@ export function* signInWithEmail({ payload: { email, password } }) {
     }
 }
 
-export function* isUserAuthenticated() {
+export function* isUserAuthenticated({ payload: { userAuth } }) {
     try {
-        const userAuth = yield getCurrentUser();
-        if (!userAuth) return;
+        if (!userAuth) {
+            yield put(signOutStart());
+            return;
+        }
         yield getSnapshotFromUserAuth(userAuth);
     } catch (error) {
         yield put(signInFailure(error));
