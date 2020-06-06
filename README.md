@@ -45,6 +45,30 @@ In order to do stripe payments, create a account on stripe and copy the api key 
 ```bash
 STRIPE_SECRET_KEY=yourkey
 ```
+## To use firebase on the front end
+
+- Create a firebase.config.js file in the src/firebase, add the firebase config in the following way
+```jsx
+const firebaseConfig = {
+    apiKey: 'AIzaSyCEk-Ww--141no1i2nii1--3rt2658',
+    authDomain: 'react-boiler-plate.firebaseapp.com',
+    databaseURL: 'https://react-boiler-plate.firebaseio.com',
+    projectId: 'react-boiler-plate',
+    storageBucket: 'react-boiler-plate.appspot.com',
+    messagingSenderId: '151251352361',
+    appId: '1:531502027435:web:512512123',
+};
+
+export default firebaseConfig;
+
+```
+
+
+## To use firebase on the nodjes server 
+
+- Download the serviceAccount credentials from firebase console and add it in the root of the project and rename it to serviceAccountInfo.json
+```jsx
+```
 
 ## Running Nodejs server and React app together
 
