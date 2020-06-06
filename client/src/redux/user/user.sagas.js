@@ -95,6 +95,13 @@ export function* signUp({ payload: { email, password, displayName } }) {
             email,
             password,
         );
+
+        const curUser = auth.currentUser;
+
+        const res = yield curUser.sendEmailVerification();
+
+        console.log('email sent, res is', res);
+
         yield put(signUpSuccess({ user, additionalData: { displayName } }));
     } catch (error) {
         yield put(signUpFailure(error));
