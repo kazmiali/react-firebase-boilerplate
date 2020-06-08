@@ -1,8 +1,11 @@
 @import '~@sweetalert2/theme-dark/dark.scss';
 
-$dark-blue: #081631;
-$grey: #58585a;
-$grey-dark: #525254;
+$primary: #f7c443;
+$background: #fff;
+$background-dark: #d6d6d6;
+$header: #d6d6d6;
+$font-color: #000;
+
 // Utilities
 .mt-1 {
     margin-top: 1rem;
@@ -67,11 +70,11 @@ $grey-dark: #525254;
 }
 
 .bg-blue {
-    background: $dark-blue;
+    background: $primary;
 }
 
 .bg-grey {
-    background: $grey;
+    background: $background;
 }
 
 .container {
@@ -98,10 +101,10 @@ $grey-dark: #525254;
     align-items: center;
     box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.2),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 0px 0px rgba(0, 0, 0, 0.12) !important;
-    background: #2b2f30;
+    background: $header;
 
     * {
-        color: #fff;
+        color: $font-color;
     }
 
     @media screen and (max-width: 600px) {
@@ -115,6 +118,13 @@ $grey-dark: #525254;
 .logo-container {
     height: 80%;
     margin-left: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+        font-size: 3rem;
+    }
     @media screen and (max-width: 600px) {
         margin: 0;
     }
@@ -150,7 +160,7 @@ $grey-dark: #525254;
     border-radius: 3px;
     margin-right: 2rem;
     &:hover {
-        background-color: darken($color: #2b2f30, $amount: 1.2);
+        background-color: darken($color: $header, $amount: 1.2);
     }
     @media screen and (max-width: 600px) {
         font-size: 1rem;
@@ -160,9 +170,9 @@ $grey-dark: #525254;
 }
 
 .option-link-blue {
-    background: $dark-blue;
+    background: $primary;
     &:hover {
-        background-color: darken($color: $dark-blue, $amount: 1.2);
+        background-color: darken($color: $primary, $amount: 1.2);
     }
 }
 
@@ -171,7 +181,7 @@ $grey-dark: #525254;
 .homepage {
     min-height: 100vh;
     * {
-        color: #fff;
+        color: $font-color;
     }
 }
 
@@ -190,7 +200,8 @@ $grey-dark: #525254;
 }
 
 .start-section {
-    background: #4f5257;
+    background: $background;
+    min-height: 100vh;
 }
 
 // Auth Login/SignUp
@@ -200,21 +211,29 @@ $grey-dark: #525254;
     align-content: center;
     height: 5rem;
     width: 100%;
+    background-color: $background-dark;
 }
 
 .auth-navbar {
     width: 95%;
-    color: white;
+    color: $font-color;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .auth-navbar-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 60px;
     width: 200px;
-    color: white;
+    color: $font-color;
     margin-right: 1rem;
+
+    svg {
+        font-size: 3rem;
+    }
 }
 
 .auth-navbar-logo {
@@ -223,7 +242,7 @@ $grey-dark: #525254;
 }
 
 .auth-navbar-statement-link {
-    color: white;
+    color: $font-color;
     font-family: 'Nexa Bold';
     font-size: bold;
 }
@@ -243,7 +262,7 @@ $grey-dark: #525254;
     align-items: center;
     width: 550px;
     padding: 2.5rem 5rem;
-    background: $grey;
+    background: $background-dark;
 }
 
 .auth-box > * {
@@ -254,7 +273,7 @@ $grey-dark: #525254;
     font-size: 2rem;
     font-family: 'Nexa Bold';
     text-align: left;
-    color: #fff;
+    color: $font-color;
 }
 
 .auth-form > * {
@@ -262,8 +281,8 @@ $grey-dark: #525254;
 }
 
 .auth-input {
-    background: $grey-dark;
-    color: white;
+    background: $background;
+    color: $font-color;
     padding: 1rem 0.5rem;
     border: none;
 
@@ -274,24 +293,24 @@ $grey-dark: #525254;
 
     &::placeholder {
         font-family: 'Nexa Light';
-        color: white;
+        color: $font-color;
     }
 }
 
 .btn-auth {
-    background: $dark-blue;
-    color: #fff;
+    background: $primary;
+    color: $font-color;
 
     &:active {
-        background: darken($dark-blue, 1.2);
+        background: darken($primary, 1.2);
     }
 }
 
 .btn-google {
-    color: #fff;
+    color: $font-color;
     font-family: 'Nexa Light';
-    background-color: $grey;
-    border: 3px solid $dark-blue;
+    background-color: $background;
+    border: 3px solid $primary;
     padding: 0.25rem 0rem;
     display: flex;
     justify-content: center;
@@ -307,7 +326,6 @@ $grey-dark: #525254;
 
 .facebook-logo {
     fill: #4267b2;
-    background: white;
     border-radius: 4px;
     padding: 0px;
 }
@@ -324,7 +342,7 @@ $grey-dark: #525254;
 }
 
 .auth-or-span {
-    background-color: $grey;
+    background-color: $background-dark;
     padding: 0 10px;
 }
 

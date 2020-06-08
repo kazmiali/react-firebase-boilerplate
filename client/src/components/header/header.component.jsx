@@ -5,14 +5,19 @@ import { Link } from 'react-router-dom';
 import { signOutStart } from '../../redux/user/user.actions';
 import { FiLogOut } from 'react-icons/fi';
 
+import { FaReact, FaNodeJs, FaCss3Alt } from 'react-icons/fa';
+
 const Header = ({ signOutStart, isAuthenticated }) => (
     <div className='header-container'>
         <Link className='logo-container' to='/'>
-            <img
+            {/* <img
                 alt='e time tracking website logo'
                 src={require('../../assets/mainlogo.png')}
                 style={{ maxHeight: '100%' }}
-            />
+            /> */}
+            <FaReact />
+            <FaNodeJs />
+            <FaCss3Alt />
         </Link>
         <div className='options-container'>
             {isAuthenticated ? (
