@@ -204,6 +204,25 @@ $font-color: #000;
     min-height: 100vh;
 }
 
+.technologies {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    svg {
+        font-size: 6rem;
+        margin-right: 1rem;
+        max-width: 6rem;
+        max-height: 6rem;
+    }
+
+    img {
+        width: 4rem;
+        height: 4rem;
+        margin-right: 1rem;
+    }
+}
+
 // Auth Login/SignUp
 .auth-navbar-container {
     display: flex;

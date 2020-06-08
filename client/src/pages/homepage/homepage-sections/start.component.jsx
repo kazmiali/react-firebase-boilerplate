@@ -1,6 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MdPeople } from 'react-icons/md';
+
+import { ReactComponent as HTML } from '../../../assets/icons/icon-html.svg';
+import { ReactComponent as CSS } from '../../../assets/icons/icon-css.svg';
+import { ReactComponent as JS } from '../../../assets/icons/icon-js.svg';
+import { ReactComponent as ReactLogo } from '../../../assets/icons/icon-react.svg';
+import { ReactComponent as Redux } from '../../../assets/icons/icon-redux.svg';
+import { ReactComponent as ReduxSaga } from '../../../assets/icons/icon-redux-saga.svg';
+import { ReactComponent as NodeJS } from '../../../assets/icons/icon-nodejs.svg';
+import { ReactComponent as Express } from '../../../assets/icons/icon-express.svg';
+import { ReactComponent as Firebase } from '../../../assets/icons/icon-firebase.svg';
+import { ReactComponent as Twilio } from '../../../assets/icons/twilio-icon.svg';
+import { ReactComponent as Stripe } from '../../../assets/icons/icon-stripe.svg';
+import { ReactComponent as Heroku } from '../../../assets/icons/icon-heroku.svg';
+import { ReactComponent as Eslint } from '../../../assets/icons/icon-eslint.svg';
 
 const Start = () => {
     return (
@@ -14,11 +26,21 @@ const Start = () => {
                     package.
                 </p>
 
-                <img
-                    src={require('../../../assets/images/start-people.png')}
-                    alt='illustration of people'
-                    className='people-image'
-                />
+                <div className='technologies'>
+                    <HTML />
+                    <CSS />
+                    <JS />
+                    <ReactLogo />
+                    <Redux />
+                    <ReduxSaga />
+                    <NodeJS />
+                    <Express />
+                    <Firebase />
+                    <Twilio />
+                    <Stripe />
+                    <Heroku />
+                    <Eslint />
+                </div>
             </div>
         </section>
     );
