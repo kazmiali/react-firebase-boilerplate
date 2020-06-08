@@ -1,23 +1,27 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import AuthNavbar from '../../components/auth-navbar/auth-navbar.component';
 import Header from '../../components/header/header.component';
+import Modal from './code-modal.component';
 
-import {
-    googleSignInStart,
-    emailSignInStart,
-    facebookSignInStart,
-} from '../../redux/user/user.actions';
+import { googleSignInStart } from '../../redux/user/user.actions';
 
 const SignUpVerification = ({ match: { path } }) => {
     const [phoneNum, setPhoneNum] = useState('');
+    const [open, setOpen] = useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const clearState = () => {
         setPhoneNum('');
     };
 
-    const handleSubmit = async (event) => {};
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setOpen(true);
+    };
 
     const handleChange = (e) => {
         setPhoneNum(e.targetvalue);
@@ -51,6 +55,7 @@ const SignUpVerification = ({ match: { path } }) => {
                     </form>
                 </div>
             </div>
+            <Modal open={open} handleClose={handleClose} />
         </Fragment>
     );
 };
@@ -61,9 +66,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     googleSignInStart: () => dispatch(googleSignInStart()),
-    facebookSignInStart: () => dispatch(facebookSignInStart()),
-    emailSignInStart: (email, password) =>
-        dispatch(emailSignInStart({ email, password })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpVerification);
