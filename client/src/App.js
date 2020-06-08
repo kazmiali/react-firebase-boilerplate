@@ -7,7 +7,7 @@ import Spinner from './components/spinner/spinner.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
 import NotFound from './components/not-found/not-found.component';
 
-// import PrivateRoute from './routes/private.route';
+import PrivateRoute from './routes/private.route';
 
 import { checkUserSession } from './redux/user/user.actions';
 
@@ -16,6 +16,9 @@ import './App.scss';
 const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const SignUp = lazy(() => import('./pages/signup/signup.component'));
 const Login = lazy(() => import('./pages/login/login.component'));
+const SignUpVerification = lazy(() =>
+    import('./pages/signup-verification/signup-verification.component'),
+);
 
 const App = ({ checkUserSession, currentUser }) => {
     useEffect(() => {
@@ -47,6 +50,11 @@ const App = ({ checkUserSession, currentUser }) => {
                             />
                             <Route path='/signup' component={SignUp} />
                             <Route path='/login' component={Login} />
+
+                            <PrivateRoute
+                                path='/signup-verification'
+                                component={SignUpVerification}
+                            />
 
                             <Route path='*' component={NotFound} />
                         </Switch>
