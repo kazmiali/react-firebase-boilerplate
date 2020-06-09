@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, ClickAwayListener } from '@material-ui/core';
 import { MdClose } from 'react-icons/md';
 
-const EntryImagesModal = ({ open, handleClose }) => {
+const EntryImagesModal = ({
+    open,
+    handleClose,
+    getResultPhoneVerificationStart,
+}) => {
+    const [code, setCode] = useState('');
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setCode(value);
+    };
+
+    const handleSubmit = () => {
+        getResultPhoneVerificationStart({ code });
+    };
+
     return (
         <Modal
             aria-labelledby='simple-modal-title'
@@ -18,8 +33,16 @@ const EntryImagesModal = ({ open, handleClose }) => {
                             <MdClose onClick={handleClose} />
                         </div>
                         <div className='m-body'>
-                            <input type='text' className='auth-input' />
-                            <button className='btn btn-auth mt-1'>
+                            <input
+                                type='text'
+                                className='auth-input'
+                                value={code}
+                                onChange={handleChange}
+                            />
+                            <button
+                                className='btn btn-auth mt-1'
+                                onClick={handleSubmit}
+                            >
                                 Verify
                             </button>
                             <span>Didn't Recived code ? Resend Code.</span>

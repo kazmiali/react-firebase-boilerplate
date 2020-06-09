@@ -5,13 +5,13 @@ import Header from '../../components/header/header.component';
 import Modal from './code-modal.component';
 
 import {
-    phoneVerificationRequestStart,
-    phoneVerificationResultStart,
+    requestPhoneVerificationStart,
+    getResultPhoneVerificationStart,
 } from '../../redux/user/user.actions';
 
 const SignUpVerification = ({
-    phoneVerificationRequestStart,
-    phoneVerificationResultStart,
+    requestPhoneVerificationStart,
+    getResultPhoneVerificationStart,
 }) => {
     const [phoneNum, setPhoneNum] = useState('');
     const [open, setOpen] = useState(false);
@@ -20,12 +20,12 @@ const SignUpVerification = ({
         setOpen(false);
     };
 
-    const clearState = () => {
-        setPhoneNum('');
-    };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
+        requestPhoneVerificationStart({
+            phoneNum: '',
+        });
+
         setOpen(true);
     };
 
@@ -61,7 +61,13 @@ const SignUpVerification = ({
                     </form>
                 </div>
             </div>
-            <Modal open={open} handleClose={handleClose} />
+            <Modal
+                open={open}
+                handleClose={handleClose}
+                getResultPhoneVerificationStart={
+                    getResultPhoneVerificationStart
+                }
+            />
         </Fragment>
     );
 };
@@ -71,10 +77,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    phoneVerificationRequestStart: (payload) =>
-        dispatch(phoneVerificationRequestStart(payload)),
-    phoneVerificationResultStart: (payload) =>
-        dispatch(phoneVerificationResultStart(payload)),
+    getResultPhoneVerificationStart: (payload) =>
+        dispatch(getResultPhoneVerificationStart(payload)),
+    requestPhoneVerificationStart: (payload) =>
+        dispatch(requestPhoneVerificationStart(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpVerification);
