@@ -8,6 +8,7 @@ import ErrorBoundary from './components/error-boundary/error-boundary.component'
 import NotFound from './components/not-found/not-found.component';
 
 import PrivateRoute from './routes/private.route';
+import PublicRoute from './routes/public.route';
 
 import { checkUserSession } from './redux/user/user.actions';
 
@@ -38,7 +39,7 @@ const App = ({ checkUserSession, currentUser }) => {
                 <ErrorBoundary>
                     <Suspense fallback={<Spinner />}>
                         <Switch>
-                            <Route
+                            <PublicRoute
                                 exact
                                 path='/'
                                 render={(props) => (
@@ -48,15 +49,24 @@ const App = ({ checkUserSession, currentUser }) => {
                                     />
                                 )}
                             />
-                            <Route path='/signup' component={SignUp} />
-                            <Route path='/login' component={Login} />
+                            <PublicRoute
+                                path='/signup'
+                                component={SignUp}
+                                isAuthPage={true}
+                            />
+                            <PublicRoute
+                                path='/login'
+                                component={Login}
+                                isAuthPage={true}
+                            />
 
                             <PrivateRoute
                                 path='/signup-verification'
                                 component={SignUpVerification}
+                                isSignUpVerPage={true}
                             />
 
-                            <Route path='*' component={NotFound} />
+                            <PublicRoute path='*' component={NotFound} />
                         </Switch>
                     </Suspense>
                 </ErrorBoundary>
