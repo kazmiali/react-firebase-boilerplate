@@ -28,7 +28,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
                 emailVerified,
                 createdAt,
                 photoURL: photoURL ? photoURL : null,
-                isOnTrial: true,
+                phoneNumber: null,
+                phoneNumberVerified: false,
                 ...additionalData,
             });
         } catch (error) {
@@ -39,21 +40,14 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 };
 
-export const getCurrentUser = () => {
-    return new Promise((resolve, reject) => {
-        const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-            unsubscribe();
-            resolve(userAuth);
-        }, reject);
-    });
-};
+export const getCurrentUserData = async (userAuth) => {
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-export const checkUserRole = async (userData1) => {
-    let userData = userData1;
+    const userSnapShot = await userRef.get();
 
-    return {
-        newUserData: userData,
-    };
+    const userData = userSnapShot.data();
+
+    return userData;
 };
 
 export const auth = firebase.auth();

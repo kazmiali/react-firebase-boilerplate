@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 import Header from '../../components/header/header.component';
 import Modal from './code-modal.component';
 
-import { googleSignInStart } from '../../redux/user/user.actions';
+import {
+    phoneVerificationRequestStart,
+    phoneVerificationResultStart,
+} from '../../redux/user/user.actions';
 
-const SignUpVerification = ({ match: { path } }) => {
+const SignUpVerification = ({
+    phoneVerificationRequestStart,
+    phoneVerificationResultStart,
+}) => {
     const [phoneNum, setPhoneNum] = useState('');
     const [open, setOpen] = useState(false);
 
@@ -65,7 +71,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    googleSignInStart: () => dispatch(googleSignInStart()),
+    phoneVerificationRequestStart: (payload) =>
+        dispatch(phoneVerificationRequestStart(payload)),
+    phoneVerificationResultStart: (payload) =>
+        dispatch(phoneVerificationResultStart(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpVerification);
