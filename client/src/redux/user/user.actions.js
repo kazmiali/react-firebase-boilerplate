@@ -74,3 +74,31 @@ export const updateDPSuccess = (payload) => ({
 export const updateDPFailure = () => ({
     type: UserActionTypes.UPDATE_DP_FAILURE,
 });
+
+export const requestPhoneVerificationStart = (payload) => ({
+    type: UserActionTypes.REQUEST_PHONE_VERIFICATION_START,
+    payload,
+});
+
+export const requestPhoneVerificationSuccess = (payload) => ({
+    type: UserActionTypes.REQUEST_PHONE_VERIFICATION_SUCCESS,
+    payload,
+});
+
+export const requestPhoneVerificationFailure = () => ({
+    type: UserActionTypes.REQUEST_PHONE_VERIFICATION_FAILURE,
+});
+
+export const getResultPhoneVerificationStart = (payload) => ({
+    type: UserActionTypes.GET_RESULT_PHONE_VERIFICATION_START,
+    payload,
+});
+
+export const getResultPhoneVerificationSuccess = (payload) => ({
+    type: UserActionTypes.GET_RESULT_PHONE_VERIFICATION_SUCCESS,
+    payload,
+});
+
+export const getResultPhoneVerificationFailure = () => ({
+    type: UserActionTypes.GET_RESULT_PHONE_VERIFICATION__FAILURE,
+});

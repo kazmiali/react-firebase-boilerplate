@@ -18,8 +18,7 @@ import {
     auth,
     googleProvider,
     createUserProfileDocument,
-    getCurrentUser,
-    checkUserRole,
+    getCurrentUserData,
     firestore,
     facebookProvider,
 } from '../../firebase/firebase.utils';
@@ -34,11 +33,9 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
             additionalData,
         );
         const userSnapshot = yield userRef.get();
-        let userData = userSnapshot.data();
+        const userData = userSnapshot.data();
 
-        const { newUserData } = yield call(checkUserRole, userData);
-
-        yield put(signInSuccess(newUserData));
+        yield put(signInSuccess(userData));
     } catch (error) {
         yield put(signInFailure(error));
     }
@@ -77,9 +74,12 @@ export function* isUserAuthenticated({ payload: { userAuth } }) {
             yield put(signOutStart());
             return;
         }
-        yield getSnapshotFromUserAuth(userAuth);
+
+        const userData = yield call(getCurrentUserData, userAuth);
+
+        yield put(signInSuccess(userData));
     } catch (error) {
-        yield put(signInFailure(error));
+        console.log(error);
     }
 }
 
@@ -137,6 +137,17 @@ export function* updateDP({ payload }) {
     }
 }
 
+export function* requestPhoneVerification({ payload }) {
+    console.log('requestPhoneVerification saga ran and payload is: ', payload);
+}
+
+export function* getResultPhoneVerification({ payload }) {
+    console.log(
+        'getResultPhoneVerification saga ran and payload is: ',
+        payload,
+    );
+}
+
 export function* onGoogleSignInStart() {
     yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
@@ -170,6 +181,20 @@ export function* onSignUpSuccess() {
 
 export function* onUpdateDPStart() {
     yield takeLatest(UserActionTypes.UPDATE_DP_START, updateDP);
+}
+
+export function* onRequestPhoneVerificationStart() {
+    yield takeLatest(
+        UserActionTypes.REQUEST_PHONE_VERIFICATION_START,
+        requestPhoneVerification,
+    );
+}
+
+export function* onGetResultPhoneVerificationStart() {
+    yield takeLatest(
+        UserActionTypes.GET_RESULT_PHONE_VERIFICATION_START,
+        getResultPhoneVerification,
+    );
 }
 
 export function* userSagas() {
