@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 const INITIAL_STATE = {
     isAuthenticated: null,
     currentUser: null,
+    otpCodeModal: false,
     error: null,
 };
 
@@ -51,6 +52,20 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 currentUser: {
                     ...state.currentUser,
                     photoURL: action.payload,
+                },
+            };
+        case UserActionTypes.CHANGE_OTP_CODE_MODAL:
+            return {
+                ...state,
+                otpCodeModal: action.payload,
+            };
+        case UserActionTypes.GET_RESULT_PHONE_VERIFICATION_SUCCESS:
+            return {
+                ...state,
+                currentUser: {
+                    ...state.currentUser,
+                    phoneNumber: action.payload.phoneNumber,
+                    phoneNumberVerified: true,
                 },
             };
         default:

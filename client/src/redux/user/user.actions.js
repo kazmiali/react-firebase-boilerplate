@@ -102,3 +102,8 @@ export const getResultPhoneVerificationSuccess = (payload) => ({
 export const getResultPhoneVerificationFailure = () => ({
     type: UserActionTypes.GET_RESULT_PHONE_VERIFICATION__FAILURE,
 });
+
+export const changeOtpCodeModal = (payload) => ({
+    type: UserActionTypes.CHANGE_OTP_CODE_MODAL,
+    payload,
+});

@@ -39,16 +39,7 @@ const App = ({ checkUserSession, currentUser }) => {
                 <ErrorBoundary>
                     <Suspense fallback={<Spinner />}>
                         <Switch>
-                            <PublicRoute
-                                exact
-                                path='/'
-                                render={(props) => (
-                                    <HomePage
-                                        {...props}
-                                        currentUser={currentUser}
-                                    />
-                                )}
-                            />
+                            <PublicRoute exact path='/' component={HomePage} />
                             <PublicRoute
                                 path='/signup'
                                 component={SignUp}

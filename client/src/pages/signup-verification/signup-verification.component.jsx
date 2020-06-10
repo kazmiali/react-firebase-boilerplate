@@ -1,5 +1,7 @@
 import React, { useState, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PhoneInput from 'react-phone-number-input';
 
 import Header from '../../components/header/header.component';
 import Modal from './code-modal.component';
@@ -7,30 +9,38 @@ import Modal from './code-modal.component';
 import {
     requestPhoneVerificationStart,
     getResultPhoneVerificationStart,
+    changeOtpCodeModal,
 } from '../../redux/user/user.actions';
+
+import './signup-verification.styles.scss';
+import 'react-phone-number-input/style.css';
 
 const SignUpVerification = ({
     requestPhoneVerificationStart,
     getResultPhoneVerificationStart,
+    currentUser,
+    changeOtpCodeModal,
+    otpCodeModal,
 }) => {
-    const [phoneNum, setPhoneNum] = useState('');
-    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState();
+
+    if (currentUser.phoneNumberVerified === true) {
+        return <Redirect to='/' />;
+    }
 
     const handleClose = () => {
-        setOpen(false);
+        changeOtpCodeModal(false);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!value || value.length < 8) {
+            return;
+        }
+
         requestPhoneVerificationStart({
-            phoneNum: '',
+            phoneNumber: value,
         });
-
-        setOpen(true);
-    };
-
-    const handleChange = (e) => {
-        setPhoneNum(e.targetvalue);
     };
 
     return (
@@ -44,15 +54,12 @@ const SignUpVerification = ({
                         </div>
                     </div>
                     <form className='auth-form' onSubmit={handleSubmit}>
-                        <input
-                            name='email'
-                            type='email'
-                            value={phoneNum}
-                            className='auth-input mt-1'
-                            placeholder='Enter Phone Number'
-                            onChange={handleChange}
+                        <PhoneInput
+                            placeholder='Enter phone number'
+                            value={value}
+                            onChange={setValue}
+                            className='phone-ver-input mt-1'
                         />
-
                         <input
                             type='submit'
                             className='btn btn-auth mt-1'
@@ -62,11 +69,13 @@ const SignUpVerification = ({
                 </div>
             </div>
             <Modal
-                open={open}
+                open={otpCodeModal}
                 handleClose={handleClose}
                 getResultPhoneVerificationStart={
                     getResultPhoneVerificationStart
                 }
+                phoneNumber={value}
+                userId={currentUser.userId}
             />
         </Fragment>
     );
@@ -74,6 +83,8 @@ const SignUpVerification = ({
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.user.isAuthenticated,
+    currentUser: state.user.currentUser,
+    otpCodeModal: state.user.otpCodeModal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -81,6 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(getResultPhoneVerificationStart(payload)),
     requestPhoneVerificationStart: (payload) =>
         dispatch(requestPhoneVerificationStart(payload)),
+    changeOtpCodeModal: (payload) => dispatch(changeOtpCodeModal(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpVerification);

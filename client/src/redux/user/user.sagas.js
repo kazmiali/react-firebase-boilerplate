@@ -1,4 +1,5 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
+import axios from 'axios';
 
 import UserActionTypes from './user.types';
 
@@ -12,6 +13,11 @@ import {
     updateDPFailure,
     updateDPSuccess,
     signOutStart,
+    requestPhoneVerificationFailure,
+    requestPhoneVerificationSuccess,
+    getResultPhoneVerificationFailure,
+    changeOtpCodeModal,
+    getResultPhoneVerificationSuccess,
 } from './user.actions';
 
 import {
@@ -137,15 +143,44 @@ export function* updateDP({ payload }) {
     }
 }
 
-export function* requestPhoneVerification({ payload }) {
-    console.log('requestPhoneVerification saga ran and payload is: ', payload);
+export function* requestPhoneVerification({ payload: { phoneNumber } }) {
+    try {
+        const resp = yield axios.post('/phone-verify-request', {
+            phoneNumber: phoneNumber,
+        });
+        console.log(resp);
+
+        yield put(changeOtpCodeModal(true));
+        yield put(requestPhoneVerificationSuccess());
+    } catch (error) {
+        console.log(error);
+        yield put(requestPhoneVerificationFailure());
+    }
 }
 
-export function* getResultPhoneVerification({ payload }) {
-    console.log(
-        'getResultPhoneVerification saga ran and payload is: ',
-        payload,
-    );
+export function* getResultPhoneVerification({
+    payload: { phoneNumber, code, userId },
+}) {
+    try {
+        const resp = yield axios.post('/phone-verify-result', {
+            phoneNumber,
+            code,
+        });
+        console.log(resp);
+
+        const userRef = firestore.doc(`users/${userId}`);
+        yield userRef.update({
+            phoneNumber,
+            phoneNumberVerified: true,
+        });
+
+        yield put(changeOtpCodeModal(false));
+
+        yield put(getResultPhoneVerificationSuccess({ phoneNumber }));
+    } catch (error) {
+        console.log(error);
+        yield put(getResultPhoneVerificationFailure());
+    }
 }
 
 export function* onGoogleSignInStart() {
@@ -207,5 +242,7 @@ export function* userSagas() {
         call(onSignUpStart),
         call(onSignUpSuccess),
         call(onUpdateDPStart),
+        call(onRequestPhoneVerificationStart),
+        call(onGetResultPhoneVerificationStart),
     ]);
 }

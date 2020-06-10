@@ -75,7 +75,7 @@ app.post('/payment', (req, res) => {
     });
 });
 
-app.post('/phone-verify-send', async (req, res) => {
+app.post('/phone-verify-request', async (req, res) => {
     const channel = 'sms';
     const { phoneNumber } = req.body;
     let verificationRequest;
@@ -84,14 +84,14 @@ app.post('/phone-verify-send', async (req, res) => {
         verificationRequest = await twilio.verify
             .services(VERIFICATION_SID)
             .verifications.create({ to: phoneNumber, channel });
-        console.log(verificationRequest);
+        res.status(200).json({ verificationRequest });
     } catch (e) {
         console.error(e);
         res.status(500).json({ error: 'ERROR', desc: e });
     }
 });
 
-app.post('/phone-verify-check', async (req, res) => {
+app.post('/phone-verify-result', async (req, res) => {
     const { code, phoneNumber } = req.body;
     let verificationResult;
 
@@ -99,6 +99,7 @@ app.post('/phone-verify-check', async (req, res) => {
         verificationResult = await twilio.verify
             .services(VERIFICATION_SID)
             .verificationChecks.create({ code, to: phoneNumber });
+        res.status(200).json({ verificationResult });
     } catch (e) {
         logger.error(e);
         return res.status(500).send(e);

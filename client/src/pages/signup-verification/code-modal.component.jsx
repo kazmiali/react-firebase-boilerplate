@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Modal, ClickAwayListener } from '@material-ui/core';
 import { MdClose } from 'react-icons/md';
+import { linearAlertBottom } from '../../utils/swalMixins';
 
 const EntryImagesModal = ({
     open,
     handleClose,
     getResultPhoneVerificationStart,
+    phoneNumber,
+    userId,
 }) => {
     const [code, setCode] = useState('');
 
@@ -15,7 +18,10 @@ const EntryImagesModal = ({
     };
 
     const handleSubmit = () => {
-        getResultPhoneVerificationStart({ code });
+        if (code.length < 6) {
+            return;
+        }
+        getResultPhoneVerificationStart({ phoneNumber, code, userId });
     };
 
     return (
@@ -29,7 +35,7 @@ const EntryImagesModal = ({
                 <ClickAwayListener onClickAway={handleClose}>
                     <div className='modal add-image-modal'>
                         <div className='m-header'>
-                            <h2>Enter Code</h2>
+                            <h2>Enter 6-digit Code</h2>
                             <MdClose onClick={handleClose} />
                         </div>
                         <div className='m-body'>
