@@ -179,7 +179,7 @@ $font-color: #000;
 // HomePage || home page
 
 .homepage {
-    min-height: 100vh;
+    min-height: 85vh;
     * {
         color: $font-color;
     }
@@ -201,12 +201,12 @@ $font-color: #000;
 
 .start-section {
     background: $background;
-    min-height: 100vh;
 }
 
 .technologies {
     margin-top: 4rem;
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     svg {
