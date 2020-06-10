@@ -10,7 +10,7 @@ const PublicRoute = ({
     ...rest
 }) => {
     if (isAuthenticated) {
-        if (currentUser.phoneNumberVerified === false) {
+        if (currentUser && currentUser.phoneNumberVerified === false) {
             return <Redirect to='/signup-verification' />;
         }
 

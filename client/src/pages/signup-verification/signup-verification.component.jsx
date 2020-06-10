@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PhoneInput from 'react-phone-number-input';
@@ -23,6 +23,10 @@ const SignUpVerification = ({
     otpCodeModal,
 }) => {
     const [value, setValue] = useState();
+
+    useEffect(() => {
+        changeOtpCodeModal(false);
+    }, []);
 
     if (currentUser.phoneNumberVerified === true) {
         return <Redirect to='/' />;
